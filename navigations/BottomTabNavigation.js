@@ -15,10 +15,11 @@ import HomeStack from "./HomeStack";
 import AccountStack from "./AccountStack";
 import ProductStack from "./NotificationStack";
 import SettingsStack from "./SettingsStack";
+import Show from "../components/Bottom";
 
 const Tab = createBottomTabNavigator();
 
-export default function Navigation() {
+export default function Navigation({ navigation }) {
   const tabOffsetValue = useRef(new Animated.Value(0)).current;
 
   function getWidth() {
@@ -82,30 +83,7 @@ export default function Navigation() {
           name={"ActionButton"}
           component={AccountStack}
           options={{
-            tabBarIcon: ({ focused }) => (
-              <TouchableOpacity>
-                <View
-                  style={{
-                    width: 65,
-                    height: 65,
-                    backgroundColor: "red",
-                    borderRadius: 50,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    marginBottom: Platform.OS == "android" ? 40 : 30,
-                  }}
-                >
-                  <Image
-                    source={plus}
-                    style={{
-                      width: 22,
-                      height: 22,
-                      tintColor: "white",
-                    }}
-                  ></Image>
-                </View>
-              </TouchableOpacity>
-            ),
+            tabBarIcon: ({ focused }) => <Show navigation={navigation} />,
           }}
         ></Tab.Screen>
 
